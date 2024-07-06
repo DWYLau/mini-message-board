@@ -2,6 +2,7 @@ import express from "express"
 import { PORT, mongoDBURL } from "./config.js"
 import mongoose from "mongoose"
 import messagesRoute from "./routes/messagesRoute.js"
+import cors from "cors"
 
 const app = express()
 
@@ -9,6 +10,13 @@ const app = express()
 
 app.use(express.json())
 app.use("/messages", messagesRoute)
+app.use(
+  cors({
+    origin: "http://localhost:5555/",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type"],
+  })
+)
 
 // index page (/)
 app.get("/", (request, response) => {
