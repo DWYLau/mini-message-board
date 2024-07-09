@@ -7,16 +7,9 @@ import cors from "cors"
 const app = express()
 
 // middleware
-
+app.use(cors())
 app.use(express.json())
 app.use("/messages", messagesRoute)
-app.use(
-  cors({
-    origin: "http://localhost:5555/",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type"],
-  })
-)
 
 // index page (/)
 app.get("/", (request, response) => {
