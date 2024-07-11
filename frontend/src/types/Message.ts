@@ -1,5 +1,5 @@
 interface MessageType {
-  id: string
+  _id: string
   message: string
   user: string
   createdAt: string

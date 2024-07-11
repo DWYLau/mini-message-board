@@ -6,9 +6,27 @@ interface MessageProps {
   message: string
   user: string
   key: number
+  id: string
+  setDeleteMessage: React.Dispatch<React.SetStateAction<string>>
+  setDeleteId: React.Dispatch<React.SetStateAction<string>>
+  setShowForm: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Message: React.FC<MessageProps> = ({ date, message, user, key }) => {
+const Message: React.FC<MessageProps> = ({
+  date,
+  message,
+  user,
+  key,
+  id,
+  setDeleteMessage,
+  setDeleteId,
+  setShowForm,
+}) => {
+  function logId(string: string) {
+    setDeleteId(string)
+    console.log("ID is:", string)
+  }
+
   const formatDate = new Date(date)
 
   return (
@@ -19,7 +37,14 @@ const Message: React.FC<MessageProps> = ({ date, message, user, key }) => {
         <h3 className="mt-1">{formatDate.toLocaleString()}</h3>
         <div className="flex gap-2">
           <FaEdit className="text-xl cursor-pointer text-blue-700 hover:text-blue-400 transition ease-in-out delay-100" />
-          <FaMinusSquare className="text-xl cursor-pointer text-red-700 hover:text-red-400 transition ease-in-out delay-100" />
+          <FaMinusSquare
+            onClick={() => {
+              logId(id)
+              setShowForm(true)
+              setDeleteMessage(message)
+            }}
+            className="text-xl cursor-pointer text-red-700 hover:text-red-400 transition ease-in-out delay-100"
+          />
         </div>
       </div>
     </div>
