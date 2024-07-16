@@ -5,9 +5,8 @@ interface MessageProps {
   date: string
   message: string
   user: string
-  key: number
   id: string
-  setDeleteMessage: React.Dispatch<React.SetStateAction<string>>
+  setFormMessage: React.Dispatch<React.SetStateAction<string>>
   setDeleteId: React.Dispatch<React.SetStateAction<string>>
   setShowForm: React.Dispatch<React.SetStateAction<boolean>>
 }
@@ -16,9 +15,8 @@ const Message: React.FC<MessageProps> = ({
   date,
   message,
   user,
-  key,
   id,
-  setDeleteMessage,
+  setFormMessage,
   setDeleteId,
   setShowForm,
 }) => {
@@ -30,7 +28,7 @@ const Message: React.FC<MessageProps> = ({
   const formatDate = new Date(date)
 
   return (
-    <div key={key} className="px-3 mx-6 my-3 border-l-4 border-sky-800">
+    <div key={id} className="px-3 mx-6 my-3 border-l-4 border-sky-800">
       <h1 className="text-xl">{message}</h1>
       <div className="flex items-center gap-3">
         <h1 className="text-2xl font-bold">{user}</h1>
@@ -41,7 +39,7 @@ const Message: React.FC<MessageProps> = ({
             onClick={() => {
               logId(id)
               setShowForm(true)
-              setDeleteMessage(message)
+              setFormMessage(message)
             }}
             className="text-xl cursor-pointer text-red-700 hover:text-red-400 transition ease-in-out delay-100"
           />

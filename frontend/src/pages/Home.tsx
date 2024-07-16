@@ -4,15 +4,29 @@ import { MessageType } from "../types/Message"
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { BsPlus } from "react-icons/bs"
+import DeleteForm from "../components/DeleteForm"
 
 const Home = () => {
   const [messages, setMessages] = useState<MessageType[]>([])
   const [loading, setLoading] = useState(false)
   const [showForm, setShowForm] = useState(false)
-  const [deleteMessage, setDeleteMessage] = useState("")
+  const [formMessage, setFormMessage] = useState("")
   const [deleteId, setDeleteId] = useState("")
 
   // function delete message - use Delete ID as part of URL
+  function deleteMessage() {
+    setLoading(true)
+    axios
+      .delete(`http://localhost:5555/messages/${deleteId}`)
+      .then(() => {
+        setShowForm(false)
+        setLoading(false)
+      })
+      .catch((error) => {
+        console.log(error)
+        setLoading(false)
+      })
+  }
 
   useEffect(() => {
     setLoading(true)
@@ -26,7 +40,7 @@ const Home = () => {
         console.log(error)
         setLoading(false)
       })
-  }, [])
+  }, [showForm])
 
   return (
     <div className=" rounded-lg border-4 border-solid border-sky-800 h-[830px] w-[1100px] overflow-y-scroll scrollbar scrollbar-thumb-sky-100 scrollbar-track-sky-300">
@@ -41,29 +55,24 @@ const Home = () => {
         <Spinner />
       ) : (
         <div className="flex flex-wrap flex-col p-2 m-2">
-          {messages.map((item, index) => (
+          {messages.map((item) => (
             <Message
-              key={index}
+              key={item._id}
               message={item.message}
               date={item.createdAt}
               user={item.user}
               id={item._id}
-              setDeleteMessage={setDeleteMessage}
+              setFormMessage={setFormMessage}
               setDeleteId={setDeleteId}
               setShowForm={setShowForm}
             />
           ))}
           {showForm ? (
-            <div className="p-2 m-2 rounded-lg border-4 border-solid border-sky-800 bg-blue-50  absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-[200px] w-[400px] z-50">
-              <h1>
-                Are you sure you would like to delete the following message?
-              </h1>
-              <h1>"{deleteMessage}"</h1>
-              <div>
-                <button>Confirm</button>
-                <button>Cancel</button>
-              </div>
-            </div>
+            <DeleteForm
+              message={formMessage}
+              deleteMessage={deleteMessage}
+              setShowForm={setShowForm}
+            />
           ) : (
             ""
           )}
