@@ -1,5 +1,6 @@
 import { FaEdit } from "react-icons/fa"
 import { FaMinusSquare } from "react-icons/fa"
+import { Link } from "react-router-dom"
 
 interface MessageProps {
   date: string
@@ -7,7 +8,7 @@ interface MessageProps {
   user: string
   id: string
   setFormMessage: React.Dispatch<React.SetStateAction<string>>
-  setDeleteId: React.Dispatch<React.SetStateAction<string>>
+  setId: React.Dispatch<React.SetStateAction<string>>
   setShowForm: React.Dispatch<React.SetStateAction<boolean>>
 }
 
@@ -17,14 +18,9 @@ const Message: React.FC<MessageProps> = ({
   user,
   id,
   setFormMessage,
-  setDeleteId,
+  setId,
   setShowForm,
 }) => {
-  function logId(string: string) {
-    setDeleteId(string)
-    console.log("ID is:", string)
-  }
-
   const formatDate = new Date(date)
 
   return (
@@ -34,10 +30,13 @@ const Message: React.FC<MessageProps> = ({
         <h1 className="text-2xl font-bold">{user}</h1>
         <h3 className="mt-1">{formatDate.toLocaleString()}</h3>
         <div className="flex gap-2">
-          <FaEdit className="text-xl cursor-pointer text-blue-700 hover:text-blue-400 transition ease-in-out delay-100" />
+          <Link to={`/edit/${id}`}>
+            <FaEdit className="text-xl cursor-pointer text-blue-700 hover:text-blue-400 transition ease-in-out delay-100" />
+          </Link>
+
           <FaMinusSquare
             onClick={() => {
-              logId(id)
+              setId(id)
               setShowForm(true)
               setFormMessage(message)
             }}

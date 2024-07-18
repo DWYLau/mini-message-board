@@ -12,7 +12,7 @@ const Home = () => {
   const [loading, setLoading] = useState(false)
   const [showForm, setShowForm] = useState(false)
   const [formMessage, setFormMessage] = useState("")
-  const [deleteId, setDeleteId] = useState("")
+  const [id, setId] = useState("")
 
   // function delete message - use Delete ID as part of URL
 
@@ -32,7 +32,7 @@ const Home = () => {
 
   function deleteMessage() {
     axios
-      .delete(`http://localhost:5555/messages/${deleteId}`)
+      .delete(`http://localhost:5555/messages/${id}`)
       .then(() => {
         setShowForm(false)
         getMessages()
@@ -72,7 +72,7 @@ const Home = () => {
               user={item.user}
               id={item._id}
               setFormMessage={setFormMessage}
-              setDeleteId={setDeleteId}
+              setId={setId}
               setShowForm={setShowForm}
             />
           ))}
