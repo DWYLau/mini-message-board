@@ -4,11 +4,8 @@
 
 body {
   padding: 3rem;
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin: 1rem;
+  overflow: hidden;
   background-image: url("../assets/background.jpg");
   background-size: cover;
 }

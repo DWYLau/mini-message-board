@@ -25,7 +25,9 @@ const Message: React.FC<MessageProps> = ({
 
   return (
     <div key={id} className="px-3 mx-6 my-3 border-l-4 border-sky-800">
-      <h1 className="text-xl">{message}</h1>
+      <h1 className="text-xl min-h-[30px] max-w-[1000px] break-words">
+        {message}
+      </h1>
       <div className="flex items-center gap-3">
         <h1 className="text-2xl font-bold">{user}</h1>
         <h3 className="mt-1">{formatDate.toLocaleString()}</h3>

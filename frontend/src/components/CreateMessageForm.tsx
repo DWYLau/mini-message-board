@@ -24,7 +24,7 @@ const CreateMessageForm: React.FC<CreateMessageProps> = ({
   handlePostMessage,
 }) => {
   return (
-    <div className="flex flex-col justify-evenly items-center p-2 m-2 rounded-lg border-4 border-solid border-sky-800 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-[450px] w-[600px]">
+    <div className="flex flex-col justify-evenly items-center p-2 m-2 rounded-lg border-4 border-solid border-sky-800 min-h-[500px] w-[600px]">
       <BackButton />
       <h1 className="font-extrabold text-3xl mx-5">Send a new message!</h1>
       <div className="p-1 m-1 flex flex-col justify-center items-center gap-2">
@@ -63,7 +63,7 @@ const CreateMessageForm: React.FC<CreateMessageProps> = ({
             setMessage(e.target.value)
             setErrorMessage(false)
           }}
-          maxLength={100}
+          maxLength={200}
         />
         {errorMessage ? (
           <h2 className="bg-red-300 p-1 rounded-md min-h-[33px] min-w-[300px]">
