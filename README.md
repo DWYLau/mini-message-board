@@ -47,3 +47,5 @@ Mini Message Board application for The Odin Project
 - Blue Background Design Vectors by Vecteezy
 
 ## Live Preview
+
+https://mini-message-board-2mti.onrender.com/
