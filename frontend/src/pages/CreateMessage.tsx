@@ -15,7 +15,7 @@ const CreateMessage = () => {
   function handlePostMessage() {
     const data = { message, user }
     axios
-      .post("http://localhost:5555/messages", data)
+      .post("https://mini-message-board-apz3.onrender.com/messages", data)
       .then(() => {
         closeSnackbar()
         navigate("/")

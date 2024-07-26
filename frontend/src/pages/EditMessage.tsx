@@ -16,7 +16,7 @@ const EditMessage = () => {
   function handleUpdateMessage() {
     const data = { message, user }
     axios
-      .put(`http://localhost:5555/messages/${id}`, data)
+      .put(`https://mini-message-board-apz3.onrender.com/messages/${id}`, data)
       .then(() => {
         navigate("/")
         closeSnackbar()
@@ -37,7 +37,7 @@ const EditMessage = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5555/messages/${id}`)
+      .get(`https://mini-message-board-apz3.onrender.com/messages/${id}`)
       .then((response) => {
         setMessage(response.data.message)
         setUser(response.data.user)

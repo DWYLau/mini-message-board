@@ -21,7 +21,7 @@ const Home = () => {
   function getMessages() {
     setLoading(true)
     axios
-      .get("http://localhost:5555/messages")
+      .get("https://mini-message-board-apz3.onrender.com/messages/")
       .then((response) => {
         setMessages(response.data.messages)
         setLoading(false)
@@ -34,7 +34,7 @@ const Home = () => {
 
   function deleteMessage() {
     axios
-      .delete(`http://localhost:5555/messages/${id}`)
+      .delete(`https://mini-message-board-apz3.onrender.com/messages/${id}`)
       .then(() => {
         setShowForm(false)
         closeSnackbar()
