@@ -49,4 +49,4 @@ Mini Message Board application for The Odin Project
 ## Live Preview
 
 https://mini-message-board-2mti.onrender.com/
-*Best viewed in Linux OR Windows Zoom 100%.
+- Best viewed in Linux OR Windows Zoom 100%.
