@@ -5,7 +5,7 @@ import messagesRoute from "./routes/messagesRoute.js"
 import cors from "cors"
 
 const app = express()
-const port = process.env.PORT || 4000
+const port = PORT || 4000
 
 // middleware
 app.use(cors())
@@ -23,7 +23,7 @@ mongoose
   .connect(mongoDBURL)
   .then(() => {
     console.log("App connected to MongoDB")
-    app.listen(PORT, () => {
+    app.listen(port, () => {
       console.log(`App is listening on port ${port}`)
     })
   })
